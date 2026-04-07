@@ -1,5 +1,8 @@
 name: "Build / Release"
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
 on:
   push:
   workflow_dispatch:
