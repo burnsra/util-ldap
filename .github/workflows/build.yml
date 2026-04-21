@@ -19,10 +19,12 @@ jobs:
           go-version: "^1.26.0"
       - name: Build Darwin Binary
         run: |
-          GOOS=darwin GOARCH=arm64 go build
+          GOOS=darwin GOARCH=arm64 go build -o ldap-macos
+          GOOS=linux GOARCH=arm64 go build -o ldap-linux
       - name: Release
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
           files: |
-            ldap
+            ldap-macos
+            ldap-linux
