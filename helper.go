@@ -74,7 +74,7 @@ func findManagerChain(l *ldap.Conn, cfg Config, filterKey string, filterValue st
 
 	manager := entry.GetEqualFoldAttributeValue("manager")
 
-	if manager != "" {
+	if manager != "" && !strings.Contains(strings.ToLower(manager), strings.ToLower(user.UID)) {
 		findManagerChain(l, cfg, "cn", CommonNameFromDistinguishedName(manager), callback)
 	}
 }
